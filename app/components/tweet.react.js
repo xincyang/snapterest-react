@@ -1,5 +1,18 @@
 var React = require('react');
 
+var tweetStyle = {
+	position: 'relative',
+	display: 'inline-block',
+	width: '300px',
+	height: '400px',
+	margin: '10px'
+};
+var imageStyle = {
+	maxHeight: '400px',
+	boxShadow: '0px 1px 1px 0px #aaa',
+	border: '1px solid #fff'
+};
+
 var Tweet = React.createClass({
 	// 属性验证仅仅在开发中使用
 	propTypes: {
@@ -22,19 +35,6 @@ var Tweet = React.createClass({
 		}
 	},
 	render: function() {
-		var tweetStyle = {
-			position: 'relative',
-			display: 'inline-block',
-			width: '300px',
-			height: '400px',
-			margin: '10px'
-		};
-		var imageStyle = {
-			maxHeight: '400px',
-			boxShadow: '0px 1px 1px 0px #aaa',
-			border: '1px solid #fff'
-		};
-
 		var tweet = this.props.tweet;
 		var tweetMediaUrl = tweet.media[0].url;
 		return (

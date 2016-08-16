@@ -19,15 +19,22 @@ var TweetList = React.createClass({
 		var handleRemoveTweetFromCollection = this.props.onRemoveTweetFromCollection;
 		var tweetElement;
 		if(handleRemoveTweetFromCollection) {
-			tweetElement = (<Tweet tweet={tweet} onImageClick={handleRemoveTweetFromCollection} />);
-			return (
-				// key属性来确定每个动态创建的子元素（性能上的优化）
-				<li style={listItemStyle} key={tweet.id}>{tweetElement}</li>
-			);
+			tweetElement = (<Tweet tweet={tweet} onImageClick={handleRemoveTweetFromCollection} />);			
+		} else {
+			tweetElement = <Tweet tweet={tweet} />;
 		}
+		return (
+			// key属性来确定每个动态创建的子元素（性能上的优化）
+			<li style={listItemStyle} key={tweet.id}>{tweetElement}</li>
+		);
 	},
 	render() {
-
+		var tweetElements = this.getListOfTweetIds().map(this.getTweetElement);
+		return (
+			<ul style={listStyle}>
+				{stweetElements}
+			</ul>
+		);
 	}
 });
 
