@@ -4,22 +4,15 @@ var Header = require('./header.react');
 var SnapkiteStreamClient = require('snapkite-stream-client');
 
 var Stream = React.createClass({
-	getInitialState: function() {
-		return {
-			tweet: null
-		};
-	},
-	// componentDidMount适合用来整合React和其他JavaScript库
-	componentDidMount: function() {
-		SnapkiteStreamClient.initializeStream(this.handleNewTweet);
-	},
-	componentWillUnmount: function() {
-		SnapkiteStreamClient.destroyStream();
-	},
 	handleNewTweet: function(tweet) {
 		this.setState({
 			tweet: tweet
 		});
+	},
+	getInitialState: function() {
+		return {
+			tweet: null
+		};
 	},	
 	render: function() {
 		var tweet = this.state.tweet;
@@ -31,6 +24,13 @@ var Stream = React.createClass({
 		return (
 			<Header text="Waiting for public photos from Twitter..." />
 		);
+	},
+	// componentDidMount适合用来整合React和其他JavaScript库
+	componentDidMount: function() {
+		SnapkiteStreamClient.initializeStream(this.handleNewTweet);
+	},
+	componentWillUnmount: function() {
+		SnapkiteStreamClient.destroyStream();
 	}
 });
 
