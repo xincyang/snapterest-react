@@ -17,7 +17,7 @@ var CollectionControls = React.createClass({
 			isEditingName: !this.state.isEditingName
 		});
 	},
-	getInitialState() {
+	getInitialState: function() {
 		return {
 			name: 'new',
 			isEditingName: false
