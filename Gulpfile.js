@@ -5,7 +5,7 @@ var source = require('vinyl-source-stream');
 
 gulp.task('default', function() {
 	return browserify('./app.js')
-		.transform(babelify, {presets: ['react']})
+		.transform(babelify)
 		.bundle()
 		.pipe(source('snapterest.js'))
 		.pipe(gulp.dest('./build/'));
