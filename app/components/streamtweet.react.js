@@ -1,6 +1,7 @@
 var React = require('react');
 var Tweet = require('./tweet.react');
 var Header = require('./header.react');
+var CollectionActionCreator = require('../actions/collectionactioncreator');
 
 var StreamTweet = React.createClass({
 	getInitialState: function() {
@@ -19,14 +20,6 @@ var StreamTweet = React.createClass({
 			numberOfReceiveTweets: 1,
 			numberOfDisplayedTweets: 1
 		};
-	},
-	render: function() {
-		return (
-			<section>
-				<header text={this.state.headerText} />
-				<Tweet tweet={this.props.tweet} onImageClick={this.props.onAddTweetToCollection} />
-			</section>
-		);
 	},
 	// 这种查找DOM节点树的方式感觉不是很好，可以通过设置ref属性来获取DOM节点树
 	componentDidMount: function() {
@@ -53,8 +46,6 @@ var StreamTweet = React.createClass({
 		});
 		window.snapterest.numberOfReceiveTweets++;
 	},
-
-	
 	shouldComponentUpdate: function(nextProps, nextState) {
 		return (nextProps.tweet.text.length > 1);
 	},
@@ -66,6 +57,17 @@ var StreamTweet = React.createClass({
 	},
 	componentWillUnmount: function() {
 		delete window.snapterest;
+	},
+	addTweetToCollection: function(tweet) {
+		CollectionActionCreator.addTweetToCollection(tweet);
+	},
+	render: function() {
+		return (
+			<section>
+				<header text={this.state.headerText} />
+				<Tweet tweet={this.props.tweet} onImageClick={this.addTweetToCollection} />
+			</section>
+		);
 	}
 });
 

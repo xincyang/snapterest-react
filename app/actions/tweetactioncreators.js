@@ -7,7 +7,7 @@ function receiveTweet(tweet) {
 		type: 'receive_tweet',
 		tweet: tweet
 	};
-	AppDispatcher.dispatcher(action);
+	AppDispatcher.dispatch(action);
 }
 
 module.exports = {

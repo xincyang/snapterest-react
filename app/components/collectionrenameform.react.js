@@ -2,36 +2,41 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Button = require('./button.react');
 var Header = require('./header.react');
+var CollectionStore = require('../stores/collectionstore');
+var CollectionActionCreator = require('../actions/collectionactioncreator');
 
 var inputStyle = {
 	marginRight: '5px'
 };
 
 var CollectionRenameForm = React.createClass({
+	getInitialState: function() {
+		return {
+			inputValue: CollectionStore.getCollectionName()
+		};
+	},
+	componentDidMount: function() {
+		// 很奇怪，这里不是ReactDOM.findDOMNode(this.refs.collectionName)，而是直接通过this.refs.collectionName取得DOM元素
+		this.refs.collectionName.focus();
+	},
 	handleInputValueChange: function(e) {
 		var inputValue = e.target.value;
 		this.setState({
 			inputValue: inputValue
 		});
-		e.stopPropagation();
-		e.preventDefault();
 	},
 	handleFormSubmit: function(e) {
-		this.props.onChangeCollectionName(this.state.inputValue);
-		e.stopPropagation();
 		e.preventDefault();
+
+		CollectionActionCreator.setCollectionName(this.state.inputValue);
+		this.props.onCancelCollectionNameChange();
 	},
 	handleFormCancel: function(e) {
-		var collectionName = this.props.name;
+		e.preventDefault();
+
+		var collectionName = CollectionStore.getCollectionName();
 		this.setState({ inputValue: collectionName });
 		this.props.onCancelCollectionNameChange();
-		e.stopPropagation();
-		e.preventDefault();
-	},
-	getInitialState: function() {
-		return {
-			inputValue: this.props.name
-		};
 	},
 	render: function() {
 		return (
@@ -44,10 +49,6 @@ var CollectionRenameForm = React.createClass({
 				<Button label="Cancel" handleClick={this.handleFormCancel} />
 			</form>
 		);
-	},
-	componentDidMount: function() {
-		// 很奇怪，这里不是ReactDOM.findDOMNode(this.refs.collectionName)，而是直接通过this.refs.collectionName取得DOM元素
-		this.refs.collectionName.focus();
 	}
 });
 
