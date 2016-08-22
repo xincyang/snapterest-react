@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var Button = require('./button.react');
 var Header = require('./header.react');
 var CollectionStore = require('../stores/collectionstore');
-var CollectionActionCreator = require('../actions/collectionactioncreator');
+var CollectionActionCreator = require('../actions/collectionactioncreators');
 
 var inputStyle = {
 	marginRight: '5px'

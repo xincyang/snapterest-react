@@ -4,7 +4,7 @@ var formStyle = {
 	display: 'inline-block'
 };
 
-var CollectionExportForm = React.creatClass({
+var CollectionExportForm = React.createClass({
 	render: function() {
 		return (
 			<form action="http://codepen.io" method="post" target="_blank" style={formStyle}>

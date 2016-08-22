@@ -1,7 +1,7 @@
 var React = require('react');
 var Tweet = require('./tweet.react');
 var Header = require('./header.react');
-var CollectionActionCreator = require('../actions/collectionactioncreator');
+var CollectionActionCreator = require('../actions/collectionactioncreators');
 
 var StreamTweet = React.createClass({
 	getInitialState: function() {

@@ -25,7 +25,7 @@ function emitChange() {
 	CollectionStore.emit(CHANGE_EVENT);
 }
 
-var CollectionStore = assgin({}, EventEmitter.prototype, {
+var CollectionStore = assign({}, EventEmitter.prototype, {
 	addChangeListener: function(cb) {
 		this.on(CHANGE_EVENT, cb);
 	},

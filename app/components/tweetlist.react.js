@@ -1,6 +1,6 @@
 var React = require('react');
 var Tweet = require('./tweet.react');
-var CollectionActionCreator = require('../actions/collectionactioncreator');
+var CollectionActionCreator = require('../actions/collectionactioncreators');
 
 var listStyle = {
 	padding: '0px'

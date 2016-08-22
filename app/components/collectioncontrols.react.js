@@ -4,7 +4,7 @@ var Header = require('./header.react');
 var CollectionExportForm = require('./collectionexportform.react');
 var Button = require('./button.react');
 var CollectionStore = require('../stores/collectionstore');
-var CollectionActionCreator = require('../actions/collectionactioncreator');
+var CollectionActionCreator = require('../actions/collectionactioncreators');
 
 var CollectionControls = React.createClass({
 	getInitialState: function() {
